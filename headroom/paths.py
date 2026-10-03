@@ -373,7 +373,7 @@ def models_config_path() -> Path:
 def plugin_config_dir(plugin_name: str) -> Path:
     """Return the config directory for a named plugin."""
 
-    if not plugin_name or "/" in plugin_name or "\\" in plugin_name:
+    if not plugin_name or plugin_name in {".", ".."} or "/" in plugin_name or "\\" in plugin_name:
         raise ValueError(f"invalid plugin name: {plugin_name!r}")
     return config_dir() / _PLUGINS_DIR / plugin_name
 
@@ -381,7 +381,7 @@ def plugin_config_dir(plugin_name: str) -> Path:
 def plugin_workspace_dir(plugin_name: str) -> Path:
     """Return the workspace directory for a named plugin."""
 
-    if not plugin_name or "/" in plugin_name or "\\" in plugin_name:
+    if not plugin_name or plugin_name in {".", ".."} or "/" in plugin_name or "\\" in plugin_name:
         raise ValueError(f"invalid plugin name: {plugin_name!r}")
     return workspace_dir() / _PLUGINS_DIR / plugin_name
 

@@ -471,7 +471,7 @@ def test_plugin_workspace_dir_namespaced(fake_home: Path) -> None:
     assert b == fake_home / ".headroom" / "plugins" / "beta"
 
 
-@pytest.mark.parametrize("bad_name", ["", "foo/bar", "foo\\bar"])
+@pytest.mark.parametrize("bad_name", ["", ".", "..", "foo/bar", "foo\\bar"])
 def test_plugin_dirs_reject_bad_names(fake_home: Path, bad_name: str) -> None:
     with pytest.raises(ValueError):
         paths.plugin_config_dir(bad_name)
